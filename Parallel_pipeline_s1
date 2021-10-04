@@ -1,0 +1,51 @@
+pipeline {
+   agent any
+   tools {
+        maven 'Maven'
+    }
+    environment {
+	 SCANNER_HOME = tool 'sonarScanner'
+	}
+    stages {
+    	
+	        stage('S0') {
+	        
+	            parallel {
+	                stage('S0.1') {
+	                	when {
+	            			equals expected: 2, actual: 2
+	        			}
+	                    steps {
+	                    	 sleep 10
+	                    	snDevOpsChange()
+	                         echo 'S0.1 is executed'
+	                         sh 'mvn test'
+	                    }
+	                    
+	                }
+	                stage('S0.2') {
+	                	when {
+	            			equals expected: 2, actual: 2
+	        			}
+	                    steps {
+	                       
+	                       snDevOpsChange()
+	                        echo 'S0.2 is executed'
+	                        sonarSummaries()
+	                    }
+	                    
+	                }
+	            }
+	
+	        }
+   		}
+	
+}
+def sonarSummaries() {
+	
+    withSonarQubeEnv('sonarQube_local') {
+       	sh '${SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=${SCANNER_HOME}/conf/qa-sonar-scanner.properties'
+   		// sh '${SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=${SCANNER_HOME}/conf/sonar-scanner.properties'
+	}
+	
+} // end of def sonarsummaries
