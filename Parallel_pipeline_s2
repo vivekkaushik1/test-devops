@@ -59,7 +59,7 @@ pipeline {
 	                       
 	                        //snDevOpsChange()
 	                        echo 'S1.2 is executed'
-	                        sonarSummaries()
+	                        //sonarSummaries()
 	                        
 	                    }
 	                    
