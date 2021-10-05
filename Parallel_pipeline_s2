@@ -27,7 +27,7 @@ pipeline {
 	        			}
 	                    steps {
 	                       
-	                        //snDevOpsChange()
+	                        snDevOpsChange()
 	                        sh 'mvn test'
 	                        echo 'S0.2 is executed'
 	                        
