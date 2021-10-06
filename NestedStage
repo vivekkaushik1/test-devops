@@ -27,13 +27,15 @@ pipeline {
 				          //sonarSummaries()
 				          snDevOpsArtifact(artifactsPayload: """{"artifacts": [{"name": "${artifactname}", "version": "1.${env.BUILD_NUMBER}","semanticVersion": "1.${env.BUILD_NUMBER}.0","repositoryName": "${repoName}"}],"branchName":"master"}""")
 				          snDevOpsPackage(name: "${packageName}-${env.BUILD_NUMBER}", artifactsPayload: """{"artifacts":[{"name": "${artifactname}", "version": "1.${env.BUILD_NUMBER}", "repositoryName": "${repoName}"}], "branchName":"master"}""")
-				          snDevOpsChange()
+				          
 				        }
 		        		    post {
 					        success {
 					          echo'Test -success'
 					          junit "**/target/surefire-reports/*.xml"
 					        }
+						sleep(10)
+						snDevOpsChange()
 					      } 
 				      }// end of build 1.1
 			      
