@@ -19,8 +19,8 @@ pipeline {
 				      stage("Build1.1") {
 				        steps {
 				          echo"build 1.1 executed"
-				          snDevOpsChange()
-				          sonarSummaries()
+				          //snDevOpsChange()
+				          //sonarSummaries()
 				        } 
 				      }// end of build 1.1
 			      
@@ -40,7 +40,6 @@ pipeline {
 												      steps {
 												        echo'nested_inside_parallel'
 												        sh'mvn test'
-												        snDevOpsChange()
 												       
 												      }
 												      post{
@@ -74,13 +73,15 @@ pipeline {
 					stage('create_artifact'){
 						steps {
                				snDevOpsArtifact(artifactsPayload: """{"artifacts": [{"name": "${artifactname}", "version": "1.${env.BUILD_NUMBER}","semanticVersion": "1.${env.BUILD_NUMBER}.0","repositoryName": "${repoName}"}],"branchName":"master"}""")
-	                	}
+	                		snDevOpsChange()
+				}
 	                }
                 
 			    	stage('create_package'){
 				    	steps{
 				    		snDevOpsPackage(name: "${packageName}-${env.BUILD_NUMBER}", artifactsPayload: """{"artifacts":[{"name": "${artifactname}", "version": "1.${env.BUILD_NUMBER}", "repositoryName": "${repoName}"}], "branchName":"master"}""")
-				    	}
+				    		snDevOpsChange()
+					}
 			        }
 				} // end of parallel stages
 			
