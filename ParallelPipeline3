@@ -12,7 +12,7 @@ pipeline {
         stage('Non-Sequential Stage') {
             steps {
                 echo "On Non-Sequential Stage"
-                snDevOpsChange()
+                //snDevOpsChange()
             }
         }
         stage('Sequential') {
