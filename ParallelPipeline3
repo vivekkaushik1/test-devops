@@ -22,6 +22,7 @@ pipeline {
                              stage('Sequential 1.1') {
                                      steps {
                                          echo "In Sequential 1.1"
+                                         sh 'mvn test'
                                          snDevOpsArtifact(artifactsPayload:"""{"artifacts": [{"name": "sequential1.1_artifact.jar","version": "${version}","semanticVersion": "${semanticVersion}","repositoryName": "sequential1.1_repo"}],"stageName": "Sequential/Parallel 1/Sequential 1.1"}""")
                                      }
                              }
