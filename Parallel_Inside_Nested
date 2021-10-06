@@ -20,7 +20,7 @@ pipeline {
 				        steps {
 				          echo"build 1.1 executed"
 				          snDevOpsChange()
-				          sonarSummaries()
+				          //sonarSummaries()
 				        } 
 				      }// end of build 1.1
 			      
