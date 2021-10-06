@@ -34,9 +34,9 @@ pipeline {
 					          echo'Test -success'
 					          junit "**/target/surefire-reports/*.xml"
 					        }
-						sleep(10)
-						snDevOpsChange()
 					      } 
+					      sleep(10)
+					      snDevOpsChange()
 				      }// end of build 1.1
 			      
 			    }// end of stages
