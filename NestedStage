@@ -27,7 +27,8 @@ pipeline {
 				          //sonarSummaries()
 				          snDevOpsArtifact(artifactsPayload: """{"artifacts": [{"name": "${artifactname}", "version": "1.${env.BUILD_NUMBER}","semanticVersion": "1.${env.BUILD_NUMBER}.0","repositoryName": "${repoName}"}],"branchName":"master"}""")
 				          snDevOpsPackage(name: "${packageName}-${env.BUILD_NUMBER}", artifactsPayload: """{"artifacts":[{"name": "${artifactname}", "version": "1.${env.BUILD_NUMBER}", "repositoryName": "${repoName}"}], "branchName":"master"}""")
-				     
+				     	  sleep(10)
+		    			  snDevOpsChange()
 				        }
 		        		    post {
 					        success {
@@ -39,14 +40,6 @@ pipeline {
 				      }// end of build 1.1
 			      
 			    }// end of stages
-		stage('Deploy'){
-		    steps{
-		    echo "Deploy Success"
-		    sleep(10)
-		    snDevOpsChange()
-		    }
-		           }
-		  }// end of build1
 			
 	} // end of stages
 } // end of pipeline
