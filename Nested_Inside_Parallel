@@ -58,7 +58,7 @@ pipeline {
 									        //sh'mvn test'
 									        echo'Test1.2 in progress'
 									        snDevOpsChange()
-				          					sonarSummaries()
+				          					//sonarSummaries()
 									        
 									      }
 						    }// end of ptest1.2
