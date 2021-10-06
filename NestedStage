@@ -23,11 +23,11 @@ pipeline {
 				          echo"build 1.1 executed"
 				          sh 'mvn test'
 
-				          snDevOpsChange()
-				          sonarSummaries()
+				          
+				          //sonarSummaries()
 				          snDevOpsArtifact(artifactsPayload: """{"artifacts": [{"name": "${artifactname}", "version": "1.${env.BUILD_NUMBER}","semanticVersion": "1.${env.BUILD_NUMBER}.0","repositoryName": "${repoName}"}],"branchName":"master"}""")
 				          snDevOpsPackage(name: "${packageName}-${env.BUILD_NUMBER}", artifactsPayload: """{"artifacts":[{"name": "${artifactname}", "version": "1.${env.BUILD_NUMBER}", "repositoryName": "${repoName}"}], "branchName":"master"}""")
-				          
+				          snDevOpsChange()
 				        }
 		        		    post {
 					        success {
