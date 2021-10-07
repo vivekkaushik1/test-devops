@@ -56,7 +56,7 @@ pipeline {
 						    stage('pTest1.2') {
 									      steps {
 									       
-									        sh 'mvn -Dtest=com.test.* clean test'
+									        sh 'mvn -Dtest=org.test.* clean test'
 									        echo'Test1.2 in progress'
 										sleep(10)
 									        //snDevOpsChange()
