@@ -19,7 +19,7 @@ pipeline {
 				      stage("Build1.1") {
 				        steps {
 				          echo"build 1.1 executed"
-				          snDevOpsChange()
+				          //snDevOpsChange()
 				          //sonarSummaries()
 				        } 
 				      }// end of build 1.1
