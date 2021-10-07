@@ -63,6 +63,11 @@ pipeline {
 				          					//sonarSummaries()
 									        
 									      }
+									       post{
+													success{
+												          echo'Test1.1-success'
+												          junit"**/target/surefire-reports/*.xml"
+												        }
 						    }// end of ptest1.2
 					    
 					  }// end of parallel
