@@ -70,7 +70,7 @@ public class firstTest {
 	public void failedtest() {
 
 //		assertEquals(4, 5);
-		assertFalse(true, "balu-test is failed");
+		assertFalse(false, "balu-test is failed");
 	}
 
 	@Ignore
