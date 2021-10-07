@@ -61,13 +61,13 @@ pipeline {
 										sleep(10)
 									        snDevOpsChange()
 				          					//sonarSummaries()
-									        
-									      }
-									       post{
-													success{
+									          post{
+											success{
 												          echo'Test1.1-success'
 												          junit"**/target/surefire-reports/*.xml"
 												        }
+									      }
+									     
 						    }// end of ptest1.2
 					    
 					  }// end of parallel
