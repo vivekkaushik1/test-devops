@@ -23,7 +23,7 @@ public class firstTest {
 	@Category(com.test.firstTest.class)
 	public void testmethod1() throws JSONException, IOException {
 
-		String payload = getPayload("gitLabjob.json");
+		String payload = getPayload("gitLabJob.json");
 		JSONObject json = new JSONObject(payload);
 		System.out.println(json.get("build_id"));
 
