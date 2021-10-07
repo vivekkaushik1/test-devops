@@ -56,8 +56,9 @@ pipeline {
 						    stage('pTest1.2') {
 									      steps {
 									       
-									        //sh'mvn test'
+									        sh'mvn test'
 									        echo'Test1.2 in progress'
+										sleep(10)
 									        snDevOpsChange()
 				          					//sonarSummaries()
 									        
