@@ -39,7 +39,7 @@ pipeline {
 								      stage("nested_inside_parallel") {
 												      steps {
 												        echo'nested_inside_parallel'
-												        sh'mvn test -Dtest=firstTest'
+												        sh'mvn test'
 												        snDevOpsChange()
 												       
 												      }
@@ -56,7 +56,7 @@ pipeline {
 						    stage('pTest1.2') {
 									      steps {
 									       
-									        sh'mvn test -Dtest=secondTest'
+									        sh 'mvn -Dtest=com.test.* clean test'
 									        echo'Test1.2 in progress'
 										sleep(10)
 									        snDevOpsChange()
