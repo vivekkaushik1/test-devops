@@ -40,13 +40,13 @@ pipeline {
 												      steps {
 												        echo'nested_inside_parallel'
 												        sh'mvn test'
-												        snDevOpsChange()
+												        //snDevOpsChange()
 												       
 												      }
 												      post{
 												        success{
 												          echo'Test1.1-success'
-												          junit"**/target/surefire-reports/*firstTest.xml"
+												          junit"**/target/surefire-reports/*.xml"
 												        }
 												      } 
 								      }// end of nested_inside_parallel
@@ -59,13 +59,13 @@ pipeline {
 									        sh 'mvn -Dtest=com.test.* clean test'
 									        echo'Test1.2 in progress'
 										sleep(10)
-									        snDevOpsChange()
+									        //snDevOpsChange()
 				          					//sonarSummaries()
 									      }
 									       post{
 											success{
 												   echo'Test1.1-success'
-												   junit"**/target/surefire-reports/*secondTest.xml"
+												   junit"**/target/surefire-reports/*.xml"
 												}
 										    }
 						    }// end of ptest1.2
