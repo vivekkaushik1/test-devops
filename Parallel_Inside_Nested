@@ -46,7 +46,7 @@ pipeline {
 												      post{
 												        success{
 												          echo'Test1.1-success'
-												          junit"**/target/surefire-reports/*.xml"
+												          junit"**/target/surefire-reports/*firstTest.xml"
 												        }
 												      } 
 								      }// end of nested_inside_parallel
@@ -65,7 +65,7 @@ pipeline {
 									       post{
 											success{
 												   echo'Test1.1-success'
-												   junit"**/target/surefire-reports/*.xml"
+												   junit"**/target/surefire-reports/*secondTest.xml"
 												}
 										    }
 						    }// end of ptest1.2
