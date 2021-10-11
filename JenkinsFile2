@@ -16,7 +16,7 @@ pipeline {
 				        steps {
 				          echo"build 1.1 executed"
 				
-					  sh'mvn clean'
+					  sh'mvn test'
 					  sleep 10
                   snDevOpsArtifact(artifactsPayload: """{"artifacts": [{"name": "${artifactname}", "version": "1.${env.BUILD_NUMBER}","semanticVersion": "1.${env.BUILD_NUMBER}.0","repositoryName": "${repoName}"}],"stageName": "Build_Nested"}""")
 				          sleep 10
