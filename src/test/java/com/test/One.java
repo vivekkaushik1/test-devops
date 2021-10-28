@@ -11,7 +11,6 @@ private ArrayList<String> fValidateOrderedList;
 
   public void uncoveredMethod() {
     System.out.println(foo());
-    System.out.println("Devops pipeline execution");
   }
   public void setValidateOrderedList(ArrayList<String> validateOrderedList) {
 		fValidateOrderedList = validateOrderedList;
