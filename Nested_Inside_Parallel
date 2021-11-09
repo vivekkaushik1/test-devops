@@ -7,7 +7,7 @@ def repoName = "sp-boot-app-repo"
 pipeline {
    agent any
    tools {
-        maven 'Maven'
+        //maven 'Maven'
     }
     environment {
 	 SCANNER_HOME = tool 'sonarScanner'
