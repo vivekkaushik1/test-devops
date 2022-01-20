@@ -11,15 +11,17 @@ pipeline {
   tools {
        maven 'Maven'
    }
+   
+  //				Build				 
   stages {
-       stage('Build') {
+       stage('Connect_to_Nexus') {
            steps {
               
               sh 'mvn -B -DskipTests clean compile'
 
            }
        }
-       stage('Test') {
+       stage('Init_Service') {
            steps {
               
               sh 'mvn test'
@@ -30,7 +32,54 @@ pipeline {
              }
            }
        }
-      stage('Deploy') {
+  
+        stage('GetPullRequest') {
+           steps {
+              
+              sh 'mvn -B -DskipTests clean compile'
+
+           }
+       }
+        stage('MergePullRequest') {
+           steps {
+              
+              sh 'mvn -B -DskipTests clean compile'
+
+           }
+       }
+       
+        stage('Build') {
+           steps {
+              
+              sh 'mvn -B -DskipTests clean compile'
+
+           }
+       }
+       
+        stage('UnitTest') {
+           steps {
+              
+              sh 'mvn -B -DskipTests clean compile'
+
+           }
+       }
+        stage('ITTest') {
+           steps {
+              
+              sh 'mvn -B -DskipTests clean compile'
+
+           }
+       }
+       
+       stage('Deploy') {
+           steps {
+              
+              sh 'mvn -B -DskipTests clean compile'
+
+           }
+       } 
+       
+          stage('Download_Artifacts') {
                  steps {
                     
                     echo 'Deploying the change....'
@@ -42,8 +91,23 @@ pipeline {
                     
                  }
       }
+    
 
 
  }
  
 }
+
+def sonarSummaries() {
+
+   //withSonarQubeEnv('Sonar_Cloud') {
+       //sh '${SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=${SCANNER_HOME}/conf/qa-sonar-scanner-cloud.properties'
+   
+	//}
+	
+    withSonarQubeEnv('sonarQube_local') {
+       	sh '${SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=${SCANNER_HOME}/conf/qa-sonar-scanner.properties'
+   		// sh '${SCANNER_HOME}/bin/sonar-scanner -Dproject.settings=${SCANNER_HOME}/conf/sonar-scanner.properties'
+	}
+	
+} // end of def sonarsummaries
