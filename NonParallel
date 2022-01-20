@@ -15,8 +15,9 @@ pipeline {
 
     stages {
 		  stage('Connect_to_Nexus') {
-			    
+			steps {    
 		    echo 'Deploying the change....'
+		    }
 
 		    
 		  }// end of build1
@@ -47,7 +48,9 @@ pipeline {
 		stage('GetPullRequest'){
 		
 	
-				
+				steps {    
+		    echo 'Deploying the change....'
+		    }
 			
 		
 			
@@ -56,25 +59,33 @@ pipeline {
 //							Deploy	Download_Artifacts	
 		  stage('MergePullRequest') {
 			    
-		    echo 'MergePullRequest ....'
+		  steps {    
+		    echo 'Deploying the change....'
+		    }
 
 		    
 		  }// end of MergePullRequest
 		  		  stage('Build') {
 			    
-		    echo 'Build ....'
+		  steps {    
+		    echo 'Deploying the change....'
+		    }
 
 		    
 		  }// end of Build
 		  		  stage('UnitTest') {
 			    
-		    echo 'UnitTest ....'
+		    steps {    
+		    echo 'Deploying the change....'
+		    }
 
 		    
 		  }// end of UnitTest
 		  		  stage('ITTest') {
 			    
-		    echo 'ITTest ....'
+		    steps {    
+		    echo 'Deploying the change....'
+		    }
 
 		    
 		  }// end of ITTest
