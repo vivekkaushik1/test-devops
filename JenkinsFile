@@ -34,17 +34,14 @@ pipeline {
                 
                     
                     echo 'Deploying the change....'
-                  stage('create_artifact'){
-									steps {
+                  
 			               				snDevOpsArtifact(artifactsPayload: """{"artifacts": [{"name": "${artifactname}", "version": "1.${env.BUILD_NUMBER}","semanticVersion": "1.${env.BUILD_NUMBER}.0","repositoryName": "${repoName}"}],"branchName":"master"}""")
 				                	}
 				                }
 			                
-						    	stage('create_package'){
-							    	steps{
+						    	
 							    		snDevOpsPackage(name: "${packageName}-${env.BUILD_NUMBER}", artifactsPayload: """{"artifacts":[{"name": "${artifactname}", "version": "1.${env.BUILD_NUMBER}", "repositoryName": "${repoName}"}], "branchName":"master"}""")
-							    	}
-						        }
+							    
                   
                     
                     
