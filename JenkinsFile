@@ -31,7 +31,7 @@ pipeline {
            }
        }
       stage('Deploy') {
-                 steps {
+                
                     
                     echo 'Deploying the change....'
                   stage('create_artifact'){
@@ -48,7 +48,7 @@ pipeline {
                   
                     
                     
-                 }
+                 
       }
       stage('Sonar Scan') {
            steps {
