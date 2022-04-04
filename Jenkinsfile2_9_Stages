@@ -29,7 +29,7 @@ pipeline {
             }
         }
 
-    	stage("Connect_Nexus") {
+    	stage("Connect_Nexus_Retry") {
             steps {
              
                 echo "Connecting Nexus..."
