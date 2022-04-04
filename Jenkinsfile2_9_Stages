@@ -11,10 +11,12 @@ pipeline {
     tools { 
         maven 'Maven' 
     }
-    stage("Nexus") {
+    
+    stages {
+    	stage("Nexus") {
             steps {
-                sleep 5
-                echo "Prod deploy..."
+                sleep 
+                echo "Connecting Nexus..."
                 snDevOpsStep()
                 snDevOpsPackage(name: "devops_pipeline_demo", artifactsPayload: """{"artifacts": [
                     {"name": "demo1.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo1"},
@@ -26,7 +28,6 @@ pipeline {
                 snDevOpsChange()
             }
         }
-    stages {
         stage("Build") {
             steps {
                 echo "Building..."
