@@ -13,7 +13,7 @@ pipeline {
     }
     
     stages {
-    	stage("Nexus") {
+    	stage("Connect_Nexus") {
             steps {
              
                 echo "Connecting Nexus..."
@@ -25,7 +25,98 @@ pipeline {
                     {"name": "demo4.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo4"},
                     {"name": "demo5.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo5"}]}""")
                 
-                snDevOpsChange()
+                //snDevOpsChange()
+            }
+        }
+
+    	stage("Connect_Nexus") {
+            steps {
+             
+                echo "Connecting Nexus..."
+                snDevOpsStep()
+                snDevOpsPackage(name: "devops_pipeline_demo", artifactsPayload: """{"artifacts": [
+                    {"name": "demo1.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo1"},
+                    {"name": "demo2.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo2"},
+                    {"name": "demo3.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo3"},
+                    {"name": "demo4.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo4"},
+                    {"name": "demo5.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo5"}]}""")
+                
+                //snDevOpsChange()
+            }
+        }
+	stage("Init_Service") {
+            steps {
+             
+                echo "Connecting Nexus..."
+                snDevOpsStep()
+                snDevOpsPackage(name: "devops_pipeline_demo", artifactsPayload: """{"artifacts": [
+                    {"name": "demo1.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo1"},
+                    {"name": "demo2.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo2"},
+                    {"name": "demo3.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo3"},
+                    {"name": "demo4.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo4"},
+                    {"name": "demo5.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo5"}]}""")
+                
+                //snDevOpsChange()
+            }
+        }
+	stage("GetPullRequest") {
+            steps {
+             
+                echo "Connecting Nexus..."
+                snDevOpsStep()
+                snDevOpsPackage(name: "devops_pipeline_demo", artifactsPayload: """{"artifacts": [
+                    {"name": "demo1.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo1"},
+                    {"name": "demo2.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo2"},
+                    {"name": "demo3.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo3"},
+                    {"name": "demo4.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo4"},
+                    {"name": "demo5.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo5"},
+		    {"name": "demo6.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo6"},
+		    {"name": "demo7.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo7"},
+		    {"name": "demo8.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo8"},
+		    {"name": "demo9.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo9"},
+		    {"name": "demo10.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo10"},
+		    {"name": "demo11.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo11"},
+		    {"name": "demo12.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo12"},
+		    {"name": "demo13.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo13"},
+		    {"name": "demo14.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo14"},
+		    {"name": "demo15.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo15"},
+		    {"name": "demo16.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo16"},
+		    {"name": "demo17.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo17"},
+		    {"name": "demo18.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo18"},
+		    {"name": "demo19.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo19"},
+		    {"name": "demo20.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo20"}]}""")
+                
+                //snDevOpsChange()
+            }
+        }
+	stage("MergePullRequest") {
+            steps {
+             
+                echo "Connecting Nexus..."
+                snDevOpsStep()
+                snDevOpsPackage(name: "devops_pipeline_demo", artifactsPayload: """{"artifacts": [
+                    {"name": "demo1.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo1"},
+                    {"name": "demo2.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo2"},
+                    {"name": "demo3.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo3"},
+                    {"name": "demo4.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo4"},
+                    {"name": "demo5.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo5"},
+		    {"name": "demo6.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo6"},
+		    {"name": "demo7.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo7"},
+		    {"name": "demo8.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo8"},
+		    {"name": "demo9.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo9"},
+		    {"name": "demo10.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo10"},
+		    {"name": "demo11.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo11"},
+		    {"name": "demo12.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo12"},
+		    {"name": "demo13.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo13"},
+		    {"name": "demo14.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo14"},
+		    {"name": "demo15.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo15"},
+		    {"name": "demo16.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo16"},
+		    {"name": "demo17.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo17"},
+		    {"name": "demo18.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo18"},
+		    {"name": "demo19.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo19"},
+		    {"name": "demo20.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo20"}]}""")
+                
+                //snDevOpsChange()
             }
         }
         stage("Build") {
