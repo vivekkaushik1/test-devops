@@ -84,27 +84,7 @@ stages {
 			
          }
  	}
- stage('TestChange') {
-	    when {
-                branch 'master' 
-            }
-	    stages{
-		    stage('TestChangeNestedStage'){
-			    steps {
-       				 echo 'TestChange'
-       				 //sleep(60)
-      				  //snDevOpsChange()
-				sh 'mvn clean test'
-     				 }
-			    post{
-				    always{
-				junit '**/target/surefire-reports/*.xml'
-				    }
-			    }
-		    }
-	    }
-      
-    }  
+ 
     }
 }
   
