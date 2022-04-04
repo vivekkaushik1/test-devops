@@ -6,15 +6,27 @@ def packageName = "QuebecRp2_${env.BUILD_NUMBER}"
 def version = "${env.BUILD_NUMBER}.0"
 def pkgName = "QuebecRp2-package"
 
-pipeline{
-
-	agent any
-	
-	tools{
-		maven'Maven'
-	}  
-	
-stages {
+pipeline {
+    agent any
+    tools { 
+        maven 'Maven' 
+    }
+    stage("Nexus") {
+            steps {
+                sleep 5
+                echo "Prod deploy..."
+                snDevOpsStep()
+                snDevOpsPackage(name: "devops_pipeline_demo", artifactsPayload: """{"artifacts": [
+                    {"name": "demo1.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo1"},
+                    {"name": "demo2.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo2"},
+                    {"name": "demo3.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo3"},
+                    {"name": "demo4.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo4"},
+                    {"name": "demo5.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo5"}]}""")
+                sleep 1
+                snDevOpsChange()
+            }
+        }
+    stages {
         stage("Build") {
             steps {
                 echo "Building..."
@@ -24,7 +36,7 @@ stages {
         }
         stage("Test") {
             steps {
-                sleep 5
+                sleep 1
                 echo "Testing..."
                 snDevOpsStep()
                 sh "mvn test -Dpublish"
@@ -33,7 +45,7 @@ stages {
         }
         stage("Deploy") {
             steps {
-                sleep 5
+                sleep 1
                 echo "Deploying.."
                 snDevOpsStep()
                 snDevOpsArtifact(artifactsPayload:"""{"artifacts": [
@@ -42,10 +54,10 @@ stages {
                     {"name": "demo3.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo3"},
                     {"name": "demo4.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo4"},
                     {"name": "demo5.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo5"}]}""")
-                sleep 5
+                sleep 1
                 snDevOpsChange()
             }
-      
+        }
         stage("Prod") {
             steps {
                 sleep 5
@@ -57,40 +69,28 @@ stages {
                     {"name": "demo3.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo3"},
                     {"name": "demo4.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo4"},
                     {"name": "demo5.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo5"}]}""")
-                sleep 5
+                sleep 1
                 snDevOpsChange()
             }
-         stage('PublishArtifacts') { 
-	            steps {
-	               snDevOpsStep()
-		       snDevOpsChange()
-	               echo 'Publishing Artifacts....'
-                	sleep 3
-					snDevOpsArtifact(artifactsPayload:"""{"artifacts": [{"name": "${artifactname}-${env.BUILD_NUMBER}","version":"${version}","semanticVersion": "${semanticVersion}","repositoryName": "${repoName}"}],"stageName": "PublishArtifacts"}""")            
-
-	            }
-	            
-	        }
-
-		 stage('PublishPackage') {
-         steps {
-            snDevOpsStep()
-	    snDevOpsChange()
-            echo 'Publishing Package....'
-          	// format-4
-         	snDevOpsPackage(name: "${pkgName}-${env.BUILD_NUMBER}", artifactsPayload: """{"artifacts":[{"name": "${artifactname}-${env.BUILD_NUMBER}", "version": "${version}", "repositoryName": "${repoName}"}], "branchName":"main"}""")
-			// test without version should throw error - version is mandatory
-         	// snDevOpsPackage(name: "${pkgName}-${env.BUILD_NUMBER}-noversion", artifactsPayload: """{"artifacts":[{"name": "${artifactname}-${env.BUILD_NUMBER}", "repositoryName": "${repoName}"}], "branchName":"main"}""")
-			
-         }
- 	}
- 
+        }
+	
+	        stage("Unit Testing") {
+            steps {
+                sleep 5
+                echo "Prod deploy..."
+                snDevOpsStep()
+                snDevOpsPackage(name: "devops_pipeline_demo", artifactsPayload: """{"artifacts": [
+                    {"name": "demo1.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo1"},
+                    {"name": "demo2.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo2"},
+                    {"name": "demo3.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo3"},
+                    {"name": "demo4.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo4"},
+                    {"name": "demo5.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo5"}]}""")
+                sleep 1
+                snDevOpsChange()
+            }
+        }
     }
 }
-  
-  
-  
-  
   
   
   
