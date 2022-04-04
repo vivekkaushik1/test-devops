@@ -15,7 +15,7 @@ pipeline {
     stages {
     	stage("Nexus") {
             steps {
-                sleep 
+             
                 echo "Connecting Nexus..."
                 snDevOpsStep()
                 snDevOpsPackage(name: "devops_pipeline_demo", artifactsPayload: """{"artifacts": [
