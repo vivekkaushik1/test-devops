@@ -29,21 +29,7 @@ pipeline {
             }
         }
 
-    	stage("Connect_Nexus_Retry") {
-            steps {
-             
-                echo "Connecting Nexus..."
-                snDevOpsStep()
-                snDevOpsPackage(name: "devops_pipeline_demo", artifactsPayload: """{"artifacts": [
-                    {"name": "demo1.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo1"},
-                    {"name": "demo2.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo2"},
-                    {"name": "demo3.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo3"},
-                    {"name": "demo4.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo4"},
-                    {"name": "demo5.jar","version": "1.0","semanticVersion": "1.1.0","repositoryName": "demo5"}]}""")
-                
-                //snDevOpsChange()
-            }
-        }
+    	
 	stage("Init_Service") {
             steps {
              
