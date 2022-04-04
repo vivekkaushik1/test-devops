@@ -45,7 +45,7 @@ stages {
                 sleep 5
                 snDevOpsChange()
             }
-        }
+      
         stage("Prod") {
             steps {
                 sleep 5
@@ -84,7 +84,7 @@ stages {
 			
          }
  	}
-   stage('TestChange') {
+ stage('TestChange') {
 	    when {
                 branch 'master' 
             }
@@ -104,10 +104,9 @@ stages {
 		    }
 	    }
       
-    }
-        
     }  
-  
+    }
+}
   
   
   
